@@ -32,7 +32,7 @@
                             <img src="{{ asset('storage/' . $kegiatan->foto) }}" alt="{{ $kegiatan->judul }}" style="width: 120px; height: 80px; object-fit: cover; border-radius: 5px;">
                         </div>
                     @endif
-                    <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*">
+                    <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*">
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah foto</small>
                     @error('foto') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>

@@ -68,7 +68,7 @@
 
             <div class="mb-3">
                 <label class="form-label"><strong>Gambar</strong></label>
-                <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" accept="image/*">
+                <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" id="gambar" accept="image/*">
                 <small class="text-muted">Maks 2MB, format: JPG, PNG</small>
                 @error('gambar')
                     <div class="invalid-feedback">{{ $message }}</div>

@@ -25,10 +25,10 @@
             <div class="row">
                 @forelse ($umkms as $index => $umkm)
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 + 100 }}">
-                        <div class="umkm-card">
+                        <div class="umkm-card img-glow">
                             @if ($umkm->logo)
-                                <div class="umkm-logo">
-                                    <img src="{{ asset('storage/' . $umkm->logo) }}" alt="{{ $umkm->nama }}" class="img-fluid">
+                                <div class="umkm-logo img-animate-container">
+                                    <img src="{{ asset('storage/' . $umkm->logo) }}" alt="{{ $umkm->nama }}" class="img-fluid img-hover-zoom img-lightbox-trigger" loading="lazy">
                                 </div>
                             @else
                                 <div class="umkm-logo-placeholder">

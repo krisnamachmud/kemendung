@@ -101,7 +101,9 @@ class AdminAuthController extends Controller
     // Logout
     public function logout()
     {
-        session()->forget(['admin', 'admin_name', 'admin_id', 'admin_avatar']);
-        return redirect()->route('admin.login');
+        session()->forget(['admin', 'admin_name', 'admin_id', 'admin_avatar', 'admin_role']);
+        session()->invalidate();
+        session()->regenerateToken();
+        return redirect()->route('home');
     }
 }

@@ -114,7 +114,7 @@
 
                 <div class="form-group">
                     <label class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                    <input type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus autocomplete="off">
                     @error('username')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -122,7 +122,7 @@
 
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" required>
+                    <input type="password" class="form-control" name="password" required autocomplete="off">
                     @error('password')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror

@@ -78,7 +78,7 @@
                         <img src="{{ asset('storage/' . $perangkat->foto) }}" alt="{{ $perangkat->nama }}" style="max-width: 200px; border-radius: 5px;">
                     </div>
                 @endif
-                <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" accept="image/*">
+                <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" id="foto" accept="image/jpeg,image/png" onchange="validateFileSize(this, 2)">
                 <small class="text-muted">Maks 2MB, format: JPG, PNG (Kosongkan jika tidak ingin mengubah foto)</small>
                 @error('foto')
                     <div class="invalid-feedback">{{ $message }}</div>

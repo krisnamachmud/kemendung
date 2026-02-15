@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Foto</label>
-                    <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/jpeg,image/png,image/jpg,image/gif" onchange="validateFileSize(this, 2)">
+                    <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/jpeg,image/png,image/jpg,image/gif" onchange="validateFileSize(this, 2)">
                     <small class="text-muted">Format: JPG, PNG, GIF. Maks 2MB</small>
                     @error('foto') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>

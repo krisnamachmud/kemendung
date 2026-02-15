@@ -74,14 +74,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/auth/google', [AdminAuthController::class, 'redirectToGoogle'])->name('google.redirect');
     Route::get('/auth/google/callback', [AdminAuthController::class, 'handleGoogleCallback'])->name('google.callback');
 
-    // Protected routes (dengan middleware admin)
-    Route::middleware(['admin'])->group(function () {
+    // Protected routes (dengan middleware admin + nocache)
+    Route::middleware(['admin', 'nocache'])->group(function () {
         // Dashboard - bisa diakses Administrator & Kartar
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     });
 
     // Routes khusus Administrator (akses semua)
-    Route::middleware(['admin', 'role:administrator'])->group(function () {
+    Route::middleware(['admin', 'nocache', 'role:administrator'])->group(function () {
         // Berita Management
         Route::resource('/berita', AdminBeritaController::class);
 
@@ -106,7 +106,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // Routes untuk Kartar (hanya akses menu Kartar)
-    Route::middleware(['admin', 'role:administrator,kartar'])->group(function () {
+    Route::middleware(['admin', 'nocache', 'role:administrator,kartar'])->group(function () {
         // Kartar Management
         Route::resource('/kartar', AdminKartarController::class);
         Route::resource('/kartar-kegiatan', AdminKartarKegiatanController::class);

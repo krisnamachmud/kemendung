@@ -6,6 +6,7 @@ use App\Models\Berita;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class AdminBeritaController extends Controller
 {
@@ -40,9 +41,7 @@ class AdminBeritaController extends Controller
 
         // Handle image upload
         if ($request->hasFile('gambar')) {
-            $filename = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('storage'), $filename);
-            $validated['gambar'] = $filename;
+            $validated['gambar'] = $request->file('gambar')->store('berita', 'public');
         }
 
         $validated['dipublikasikan'] = $request->has('dipublikasikan') ? 1 : 0;
@@ -77,13 +76,10 @@ class AdminBeritaController extends Controller
         // Handle image upload
         if ($request->hasFile('gambar')) {
             // Delete old image
-            if ($berita->gambar && file_exists(public_path('storage/' . $berita->gambar))) {
-                unlink(public_path('storage/' . $berita->gambar));
+            if ($berita->gambar) {
+                Storage::disk('public')->delete($berita->gambar);
             }
-
-            $filename = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('storage'), $filename);
-            $validated['gambar'] = $filename;
+            $validated['gambar'] = $request->file('gambar')->store('berita', 'public');
         }
 
         $validated['dipublikasikan'] = $request->has('dipublikasikan') ? 1 : 0;
@@ -97,8 +93,8 @@ class AdminBeritaController extends Controller
     public function destroy(Berita $berita)
     {
         // Delete image if exists
-        if ($berita->gambar && file_exists(public_path('storage/' . $berita->gambar))) {
-            unlink(public_path('storage/' . $berita->gambar));
+        if ($berita->gambar) {
+            Storage::disk('public')->delete($berita->gambar);
         }
 
         $berita->delete();

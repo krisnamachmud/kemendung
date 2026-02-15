@@ -16,9 +16,9 @@
 
         <div class="row">
             <div class="col-md-5 mb-4" data-aos="fade-right">
-                <div class="umkm-detail-image">
+                <div class="umkm-detail-image img-glow">
                     @if ($umkm->logo)
-                        <img src="{{ asset('storage/' . $umkm->logo) }}" alt="{{ $umkm->nama }}" class="img-fluid">
+                        <img src="{{ asset('storage/' . $umkm->logo) }}" alt="{{ $umkm->nama }}" class="img-fluid img-hover-zoom img-lightbox-trigger" loading="lazy">
                     @else
                         <div class="umkm-image-placeholder">
                             <i class="fas fa-building fa-5x"></i>
@@ -112,10 +112,10 @@
             <div class="row">
                 @foreach($otherUmkms as $index => $other)
                     <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
-                        <div class="umkm-card">
+                        <div class="umkm-card img-glow">
                             @if ($other->logo)
-                                <div class="umkm-logo">
-                                    <img src="{{ asset('storage/' . $other->logo) }}" alt="{{ $other->nama }}" class="img-fluid">
+                                <div class="umkm-logo img-animate-container">
+                                    <img src="{{ asset('storage/' . $other->logo) }}" alt="{{ $other->nama }}" class="img-fluid img-hover-zoom img-lightbox-trigger" loading="lazy">
                                 </div>
                             @else
                                 <div class="umkm-logo-placeholder">

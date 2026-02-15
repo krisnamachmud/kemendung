@@ -67,10 +67,10 @@
         <div class="row">
             @forelse ($berita as $index => $item)
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 + 100 }}">
-                    <div class="card h-100">
+                    <div class="card h-100 img-glow">
                         @if ($item->gambar)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $item->gambar) }}" class="card-img-top" alt="{{ $item->judul }}" style="height: 200px; object-fit: cover;">
+                            <div class="img-animate-container img-overlay-container" style="height: 200px;">
+                                <img src="{{ asset('storage/' . $item->gambar) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $item->judul }}" style="height: 200px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div class="bg-secondary" style="height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
@@ -117,10 +117,10 @@
         <div class="row">
             @forelse ($perangkat as $index => $item)
                 <div class="col-md-4 col-sm-6 mb-4" data-aos="flip-left" data-aos-delay="{{ ($index % 3) * 150 + 100 }}">
-                    <div class="card text-center h-100">
+                    <div class="card text-center h-100 img-glow card-tilt">
                         @if ($item->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $item->foto) }}" class="card-img-top" alt="{{ $item->nama }}" style="height: 250px; object-fit: cover;">
+                            <div class="img-animate-container img-overlay-container" style="height: 250px;">
+                                <img src="{{ asset('storage/' . $item->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $item->nama }}" style="height: 250px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div class="bg-secondary" style="height: 250px; display: flex; align-items: center; justify-content: center;">

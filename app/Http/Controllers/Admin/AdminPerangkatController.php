@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Perangkat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AdminPerangkatController extends Controller
 {
@@ -30,14 +31,12 @@ class AdminPerangkatController extends Controller
             'dusun' => 'nullable|string|max:255',
             'nip' => 'nullable|string|max:255',
             'no_ktp' => 'nullable|string|max:255',
-            'foto' => 'nullable|image|max:2048',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         // Handle image upload
         if ($request->hasFile('foto')) {
-            $filename = time() . '.' . $request->foto->extension();
-            $request->foto->move(public_path('storage'), $filename);
-            $validated['foto'] = $filename;
+            $validated['foto'] = $request->file('foto')->store('perangkat', 'public');
         }
 
         Perangkat::create($validated);
@@ -60,19 +59,16 @@ class AdminPerangkatController extends Controller
             'dusun' => 'nullable|string|max:255',
             'nip' => 'nullable|string|max:255',
             'no_ktp' => 'nullable|string|max:255',
-            'foto' => 'nullable|image|max:2048',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         // Handle image upload
         if ($request->hasFile('foto')) {
             // Delete old image
-            if ($perangkat->foto && file_exists(public_path('storage/' . $perangkat->foto))) {
-                unlink(public_path('storage/' . $perangkat->foto));
+            if ($perangkat->foto) {
+                Storage::disk('public')->delete($perangkat->foto);
             }
-
-            $filename = time() . '.' . $request->foto->extension();
-            $request->foto->move(public_path('storage'), $filename);
-            $validated['foto'] = $filename;
+            $validated['foto'] = $request->file('foto')->store('perangkat', 'public');
         }
 
         $perangkat->update($validated);
@@ -84,8 +80,8 @@ class AdminPerangkatController extends Controller
     public function destroy(Perangkat $perangkat)
     {
         // Delete image if exists
-        if ($perangkat->foto && file_exists(public_path('storage/' . $perangkat->foto))) {
-            unlink(public_path('storage/' . $perangkat->foto));
+        if ($perangkat->foto) {
+            Storage::disk('public')->delete($perangkat->foto);
         }
 
         $perangkat->delete();

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Umkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -81,6 +82,10 @@ class AdminUmkmController extends Controller
 
         // Handle logo upload
         if ($request->hasFile('logo')) {
+            // Delete old logo
+            if ($umkm->logo) {
+                Storage::disk('public')->delete($umkm->logo);
+            }
             $file = $request->file('logo');
             $path = $file->store('umkm', 'public');
             $validated['logo'] = $path;
@@ -99,6 +104,11 @@ class AdminUmkmController extends Controller
 
     public function destroy(Umkm $umkm): RedirectResponse
     {
+        // Delete logo if exists
+        if ($umkm->logo) {
+            Storage::disk('public')->delete($umkm->logo);
+        }
+
         $umkm->delete();
         return redirect()->route('admin.umkm.index')
             ->with('success', 'UMKM berhasil dihapus!');

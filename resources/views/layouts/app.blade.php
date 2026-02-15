@@ -1092,6 +1092,12 @@
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <!-- Image Lightbox Modal -->
+    <div id="imageLightbox" class="image-lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></span>
+        <img id="lightboxImage" src="" alt="Preview">
+    </div>
+
     <script>
         // Initialize AOS
         AOS.init({
@@ -1106,7 +1112,142 @@
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
             }, 500);
+
+            // Initialize image animations after page load
+            initImageAnimations();
         });
+
+        // ============================================
+        // IMAGE ANIMATIONS & LIGHTBOX
+        // ============================================
+        
+        function initImageAnimations() {
+            // Add hover zoom classes to all card images
+            document.querySelectorAll('.card img, .umkm-card img, .kartar-card img, .umkm-logo img').forEach(function(img) {
+                img.classList.add('img-hover-zoom');
+                
+                // Add lightbox trigger
+                if (!img.closest('.admin-panel') && !img.closest('form')) {
+                    img.classList.add('img-lightbox-trigger');
+                    img.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openLightbox(this.src);
+                    });
+                }
+            });
+
+            // Scroll-based fade-in animation for images
+            const imgObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('visible');
+                        
+                        // Add stagger delay based on index
+                        const cards = img.closest('.row');
+                        if (cards) {
+                            const siblings = Array.from(cards.querySelectorAll('.img-fade-in'));
+                            const index = siblings.indexOf(img);
+                            img.style.transitionDelay = (index * 0.1) + 's';
+                        }
+                        
+                        imgObserver.unobserve(img);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Apply fade-in to all content images
+            document.querySelectorAll('.card .card-img-top, .umkm-logo img, .umkm-detail-image img').forEach(function(img) {
+                // Only apply if image hasn't loaded yet
+                if (!img.complete) {
+                    img.classList.add('img-fade-in');
+                    imgObserver.observe(img);
+                    img.addEventListener('load', function() {
+                        // Trigger animation after image loads
+                        setTimeout(function() {
+                            img.classList.add('visible');
+                        }, 100);
+                    });
+                }
+            });
+
+            // Add glow effect to person/profile cards
+            document.querySelectorAll('.card.text-center').forEach(function(card) {
+                if (card.querySelector('.card-img-top')) {
+                    card.classList.add('img-glow');
+                }
+            });
+        }
+
+        // Lightbox Functions
+        function openLightbox(src) {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('lightboxImage');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Image Upload Preview
+        function setupImagePreview(inputId, previewContainerId) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            
+            input.addEventListener('change', function() {
+                const file = this.files[0];
+                let previewContainer = document.getElementById(previewContainerId);
+                
+                if (!previewContainer) {
+                    previewContainer = document.createElement('div');
+                    previewContainer.id = previewContainerId;
+                    previewContainer.className = 'upload-preview-container';
+                    this.parentNode.insertBefore(previewContainer, this.nextSibling);
+                }
+                
+                if (file) {
+                    // Validate file size
+                    if (file.size > 2 * 1024 * 1024) {
+                        alert('Ukuran file terlalu besar! Maksimal 2MB');
+                        this.value = '';
+                        previewContainer.innerHTML = '';
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewContainer.innerHTML = 
+                            '<img src="' + e.target.result + '" class="img-preview-animate" alt="Preview">' +
+                            '<button type="button" class="remove-preview" onclick="removePreview(\'' + inputId + '\', \'' + previewContainerId + '\')">' +
+                            '<i class="fas fa-times"></i></button>';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewContainer.innerHTML = '';
+                }
+            });
+        }
+
+        function removePreview(inputId, previewContainerId) {
+            document.getElementById(inputId).value = '';
+            document.getElementById(previewContainerId).innerHTML = '';
+        }
 
         // Navbar Scroll Effect
         window.addEventListener('scroll', function() {

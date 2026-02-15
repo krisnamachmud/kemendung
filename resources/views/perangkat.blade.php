@@ -45,10 +45,10 @@
 
             @if ($kepala)
                 <div class="col-md-6 mb-4" data-aos="flip-left" data-aos-delay="100">
-                    <div class="card text-center" style="border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <div class="card text-center img-glow card-tilt" style="border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         @if ($kepala->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $kepala->foto) }}" class="card-img-top" alt="{{ $kepala->nama }}" style="height: 300px; object-fit: cover;">
+                            <div class="img-animate-container img-overlay-container" style="height: 300px;">
+                                <img src="{{ asset('storage/' . $kepala->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $kepala->nama }}" style="height: 300px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div class="bg-secondary" style="height: 300px; display: flex; align-items: center; justify-content: center;">
@@ -77,10 +77,10 @@
 
             @if ($sekretaris)
                 <div class="col-md-6 mb-4" data-aos="flip-right" data-aos-delay="200">
-                    <div class="card text-center" style="border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <div class="card text-center img-glow card-tilt" style="border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         @if ($sekretaris->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $sekretaris->foto) }}" class="card-img-top" alt="{{ $sekretaris->nama }}" style="height: 300px; object-fit: cover;">
+                            <div class="img-animate-container img-overlay-container" style="height: 300px;">
+                                <img src="{{ asset('storage/' . $sekretaris->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $sekretaris->nama }}" style="height: 300px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div class="bg-secondary" style="height: 300px; display: flex; align-items: center; justify-content: center;">
@@ -124,10 +124,10 @@
 
             @if ($kasun)
                 <div class="col-md-6 mx-auto mb-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="card text-center" style="border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <div class="card text-center img-glow card-tilt" style="border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         @if ($kasun->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $kasun->foto) }}" class="card-img-top" alt="{{ $kasun->nama }}" style="height: 300px; object-fit: cover;">
+                            <div class="img-animate-container img-overlay-container" style="height: 300px;">
+                                <img src="{{ asset('storage/' . $kasun->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $kasun->nama }}" style="height: 300px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div class="bg-secondary" style="height: 300px; display: flex; align-items: center; justify-content: center;">
@@ -171,10 +171,10 @@
 
             @forelse ($aparatur as $index => $item)
                 <div class="col-md-4 mb-4" data-aos="flip-up" data-aos-delay="{{ ($index % 3) * 100 + 100 }}">
-                    <div class="card text-center" style="border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <div class="card text-center img-glow" style="border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         @if ($item->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $item->foto) }}" class="card-img-top" alt="{{ $item->nama }}" style="height: 200px; object-fit: cover;">
+                            <div class="img-animate-container img-overlay-container" style="height: 200px;">
+                                <img src="{{ asset('storage/' . $item->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $item->nama }}" style="height: 200px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div class="bg-secondary" style="height: 200px; display: flex; align-items: center; justify-content: center;">
@@ -226,10 +226,10 @@
 
             @forelse ($pengurusInti as $index => $anggota)
                 <div class="col-md-3 col-6 mb-4" data-aos="flip-left" data-aos-delay="{{ $index * 100 }}">
-                    <div class="card text-center kartar-card" style="border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #3498db;">
+                    <div class="card text-center kartar-card img-glow" style="border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #3498db;">
                         @if ($anggota->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $anggota->foto) }}" class="card-img-top" alt="{{ $anggota->nama }}" style="height: 200px; object-fit: cover;">
+                            <div class="img-animate-container" style="height: 200px;">
+                                <img src="{{ asset('storage/' . $anggota->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $anggota->nama }}" style="height: 200px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div style="height: 200px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
@@ -272,10 +272,10 @@
 
             @forelse ($anggotaLain as $index => $anggota)
                 <div class="col-md-3 col-6 mb-4" data-aos="zoom-in" data-aos-delay="{{ ($index % 4) * 50 }}">
-                    <div class="card text-center kartar-card" style="border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <div class="card text-center kartar-card img-glow" style="border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         @if ($anggota->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $anggota->foto) }}" class="card-img-top" alt="{{ $anggota->nama }}" style="height: 180px; object-fit: cover;">
+                            <div class="img-animate-container" style="height: 180px;">
+                                <img src="{{ asset('storage/' . $anggota->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $anggota->nama }}" style="height: 180px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div style="height: 180px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #85c1e2 0%, #3498db 100%);">

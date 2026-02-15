@@ -74,7 +74,7 @@
                         <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Gambar berita" style="max-width: 200px; border-radius: 5px;">
                     </div>
                 @endif
-                <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" accept="image/*">
+                <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" id="gambar" accept="image/*">
                 <small class="text-muted">Maks 2MB, format: JPG, PNG (Kosongkan jika tidak ingin mengubah gambar)</small>
                 @error('gambar')
                     <div class="invalid-feedback">{{ $message }}</div>

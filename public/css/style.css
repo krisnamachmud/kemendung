@@ -369,3 +369,421 @@ footer .social-links a:hover {
         max-width: 100%;
     }
 }
+
+/* ============================================
+   PHOTO & IMAGE ANIMATIONS
+   ============================================ */
+
+/* Image Container with overflow hidden for zoom effects */
+.img-animate-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* Zoom on hover */
+.img-hover-zoom {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                filter 0.4s ease;
+    will-change: transform;
+}
+
+.img-hover-zoom:hover {
+    transform: scale(1.08);
+}
+
+/* Brightness on hover */
+.img-hover-bright:hover {
+    filter: brightness(1.1) contrast(1.05);
+}
+
+/* Card image effects */
+.card .card-img-top,
+.card img.img-fluid,
+.umkm-card img,
+.umkm-logo img,
+.umkm-detail-image img,
+.kartar-card img {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                filter 0.4s ease,
+                opacity 0.4s ease;
+    will-change: transform;
+}
+
+.card:hover .card-img-top,
+.card:hover img.img-fluid,
+.umkm-card:hover img,
+.umkm-card:hover .umkm-logo img,
+.kartar-card:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.05);
+}
+
+/* Fade-in from bottom animation for images on scroll */
+.img-fade-in {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.img-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Shimmer loading placeholder */
+.img-shimmer {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Pulse glow effect on photo cards */
+.img-glow {
+    transition: box-shadow 0.4s ease;
+}
+
+.img-glow:hover {
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.3),
+                0 0 40px rgba(52, 152, 219, 0.1);
+}
+
+/* Rotate-in animation */
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate3d(0, 0, 1, -10deg) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: rotate3d(0, 0, 1, 0deg) scale(1);
+    }
+}
+
+.img-rotate-in {
+    animation: rotateIn 0.8s ease-out forwards;
+}
+
+/* Slide-in from left */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide-in from right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scale-up entrance */
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.img-scale-up {
+    opacity: 0;
+    animation: scaleUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Float animation for hero images */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.img-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Ken Burns effect for background images */
+@keyframes kenBurns {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.img-ken-burns {
+    animation: kenBurns 20s ease-in-out infinite;
+}
+
+/* Overlay effect on hover */
+.img-overlay-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.img-overlay-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.img-overlay-container:hover::after {
+    opacity: 1;
+}
+
+/* Tilt effect on hover */
+.card-tilt {
+    transition: transform 0.4s ease;
+    transform-style: preserve-3d;
+}
+
+.card-tilt:hover {
+    transform: perspective(1000px) rotateY(5deg) rotateX(2deg);
+}
+
+/* Image reveal from clip-path */
+@keyframes clipReveal {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+.img-clip-reveal {
+    animation: clipReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Bounce in effect */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.img-bounce-in {
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Staggered grid animation */
+.stagger-grid > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-grid > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-grid > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-grid > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-grid > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-grid > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger-grid > *:nth-child(7) { animation-delay: 0.7s; }
+.stagger-grid > *:nth-child(8) { animation-delay: 0.8s; }
+.stagger-grid > *:nth-child(9) { animation-delay: 0.9s; }
+
+/* Photo frame decoration */
+.img-framed {
+    border: 3px solid transparent;
+    border-image: linear-gradient(135deg, var(--primary-color), var(--accent-color)) 1;
+    padding: 4px;
+    transition: all 0.4s ease;
+}
+
+.img-framed:hover {
+    border-image: linear-gradient(135deg, var(--accent-color), var(--primary-color)) 1;
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.25);
+}
+
+/* Lightbox cursor for images */
+.img-lightbox-trigger {
+    cursor: zoom-in;
+}
+
+/* Image upload preview animation */
+.img-preview-animate {
+    animation: scaleUp 0.5s ease forwards;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Spin-in for profile/avatar images */
+@keyframes spinIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.img-spin-in {
+    animation: spinIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Responsive image animations */
+@media (prefers-reduced-motion: reduce) {
+    .img-hover-zoom:hover,
+    .card:hover .card-img-top,
+    .card:hover img.img-fluid,
+    .umkm-card:hover img,
+    .kartar-card:hover img {
+        transform: none;
+    }
+    
+    .img-fade-in,
+    .img-scale-up,
+    .img-rotate-in,
+    .img-bounce-in,
+    .img-clip-reveal,
+    .img-spin-in {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    .img-float,
+    .img-ken-burns {
+        animation: none;
+    }
+}
+
+/* ============================================
+   IMAGE LIGHTBOX MODAL
+   ============================================ */
+.image-lightbox {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    cursor: zoom-out;
+    animation: fadeInLightbox 0.3s ease;
+}
+
+.image-lightbox.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 5px;
+    animation: zoomInLightbox 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.image-lightbox .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10001;
+    transition: transform 0.3s ease;
+    background: rgba(255,255,255,0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-lightbox .lightbox-close:hover {
+    transform: rotate(90deg);
+    background: rgba(255,255,255,0.2);
+}
+
+@keyframes fadeInLightbox {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomInLightbox {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* ============================================
+   IMAGE PREVIEW IN FORMS
+   ============================================ */
+.upload-preview-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.upload-preview-container img {
+    max-width: 250px;
+    max-height: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    animation: scaleUp 0.5s ease forwards;
+}
+
+.upload-preview-container .remove-preview {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 28px;
+    height: 28px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
+}
+
+.upload-preview-container .remove-preview:hover {
+    background: #c0392b;
+    transform: scale(1.1);
+}

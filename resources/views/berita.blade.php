@@ -19,8 +19,8 @@
                 <div class="card mb-4" style="border: none; border-bottom: 1px solid #eee; border-radius: 0;" data-aos="fade-up" data-aos-delay="{{ ($index % 5) * 100 }}">
                     <div class="row g-0">
                         @if ($item->gambar)
-                            <div class="col-md-4" style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid rounded" alt="{{ $item->judul }}" style="height: 200px; object-fit: cover; width: 100%; transition: transform 0.5s ease;">
+                            <div class="col-md-4 img-animate-container">
+                                <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid rounded img-hover-zoom img-lightbox-trigger" alt="{{ $item->judul }}" style="height: 200px; object-fit: cover; width: 100%;" loading="lazy">
                             </div>
                         @endif
                         <div class="col-md-{{ $item->gambar ? 8 : 12 }}">

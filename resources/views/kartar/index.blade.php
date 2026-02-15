@@ -75,8 +75,8 @@
                 <div class="col-md-4" data-aos="flip-left">
                     <div class="card text-center" style="border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 15px; overflow: hidden;">
                         @if($ketua->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $ketua->foto) }}" class="card-img-top" alt="{{ $ketua->nama }}" style="height: 280px; object-fit: cover;">
+                            <div class="img-animate-container img-overlay-container" style="height: 280px;">
+                                <img src="{{ asset('storage/' . $ketua->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $ketua->nama }}" style="height: 280px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div style="height: 280px; background: linear-gradient(135deg, #1a5f4a, #2d7d63); display: flex; align-items: center; justify-content: center;">
@@ -105,8 +105,8 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                     <div class="card text-center h-100" style="border: none; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-radius: 15px; overflow: hidden; transition: transform 0.3s;">
                         @if($member->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $member->foto) }}" class="card-img-top" alt="{{ $member->nama }}" style="height: 200px; object-fit: cover;">
+                            <div class="img-animate-container" style="height: 200px;">
+                                <img src="{{ asset('storage/' . $member->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $member->nama }}" style="height: 200px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div style="height: 200px; background: linear-gradient(135deg, #2d7d63, #3d9d83); display: flex; align-items: center; justify-content: center;">
@@ -145,8 +145,8 @@
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                     <div class="card h-100" style="border: none; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-radius: 15px; overflow: hidden;">
                         @if($item->foto)
-                            <div style="overflow: hidden;">
-                                <img src="{{ asset('storage/' . $item->foto) }}" class="card-img-top" alt="{{ $item->judul }}" style="height: 200px; object-fit: cover;">
+                            <div class="img-animate-container img-overlay-container" style="height: 200px;">
+                                <img src="{{ asset('storage/' . $item->foto) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $item->judul }}" style="height: 200px; object-fit: cover;" loading="lazy">
                             </div>
                         @else
                             <div style="height: 200px; background: linear-gradient(135deg, #1a5f4a, #2d7d63); display: flex; align-items: center; justify-content: center;">

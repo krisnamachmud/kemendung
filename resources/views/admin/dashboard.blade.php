@@ -9,7 +9,7 @@
 
 {{-- Dashboard untuk Administrator --}}
 @if($user && $user->isAdministrator())
-<div class="row">
+<div class="row dashboard-cards">
     <div class="col-md-3 mb-4">
         <div class="card bg-primary text-white">
             <div class="card-body">
@@ -151,7 +151,7 @@
 
 {{-- Dashboard untuk Kartar --}}
 @if($user && $user->isKartar())
-<div class="row">
+<div class="row dashboard-cards">
     <div class="col-md-4 mb-4">
         <div class="card bg-primary text-white">
             <div class="card-body">

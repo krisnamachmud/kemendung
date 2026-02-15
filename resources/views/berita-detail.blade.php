@@ -21,7 +21,9 @@
             <!-- Konten Berita -->
             <article class="card" style="border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                 @if ($berita->gambar)
-                    <img src="{{ asset('storage/' . $berita->gambar) }}" class="card-img-top" alt="{{ $berita->judul }}" style="max-height: 400px; object-fit: cover;">
+                    <div class="img-animate-container">
+                        <img src="{{ asset('storage/' . $berita->gambar) }}" class="card-img-top img-hover-zoom img-lightbox-trigger" alt="{{ $berita->judul }}" style="max-height: 400px; object-fit: cover;" loading="lazy">
+                    </div>
                 @endif
                 <div class="card-body">
                     <div class="mb-4 pb-4" style="border-bottom: 2px solid #eee;">
