@@ -962,7 +962,7 @@
             </div>
             <div class="map-modal-body">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15833.819976090748!2d112.41030300000004!3d-7.188810452379681!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77f7eb1226e859%3A0x2e9248c88b377150!2sTikung%2C%20Lamongan%20Regency%2C%20East%20Java%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1770237754082!5m2!1sen!2sus"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15835.352950153654!2d112.41272724778878!3d-7.1446963357514734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77f7672c85f137%3A0x30aa2526844c76f1!2sKemendung%2C%20Jatirejo%2C%20Kec.%20Tikung%2C%20Kabupaten%20Lamongan%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1771380276147!5m2!1sid!2sid"
                     allowfullscreen="" 
                     loading="lazy" 
                     referrerpolicy="no-referrer-when-downgrade">
@@ -1090,7 +1090,7 @@
                     <!-- Map Container dengan Custom SVG Icon -->
                     <div class="map-container">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15833.819976090748!2d112.41030300000004!3d-7.188810452379681!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77f7eb1226e859%3A0x2e9248c88b377150!2sTikung%2C%20Lamongan%20Regency%2C%20East%20Java%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1770237754082!5m2!1sen!2sus"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15835.352950153654!2d112.41272724778878!3d-7.1446963357514734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77f7672c85f137%3A0x30aa2526844c76f1!2sKemendung%2C%20Jatirejo%2C%20Kec.%20Tikung%2C%20Kabupaten%20Lamongan%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1771380276147!5m2!1sid!2sid"
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
