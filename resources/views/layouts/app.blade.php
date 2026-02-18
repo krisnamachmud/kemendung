@@ -28,10 +28,24 @@
             box-sizing: border-box;
         }
 
+        /* Fix horizontal overflow - mencegah scroll horizontal */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
             line-height: 1.6;
+            position: relative;
+        }
+
+        /* Fix untuk semua section dan container agar tidak overflow */
+        .container, .container-fluid, section, header, footer, main, .row {
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         /* Navbar */
@@ -178,11 +192,14 @@
             padding: 10px;
             overflow: hidden;
             font-weight: 500;
+            width: 100%;
+            max-width: 100vw;
         }
 
         .running-text-content {
             display: flex;
             animation: scroll-left 15s linear infinite;
+            white-space: nowrap;
         }
 
         @keyframes scroll-left {
@@ -334,8 +351,38 @@
             text-align: center;
         }
 
+        /* Page wrapper untuk mencegah horizontal scroll */
+        .page-wrapper {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            /* Fix untuk AOS animations yang menyebabkan overflow */
+            [data-aos] {
+                overflow: hidden;
+            }
+            
+            /* Fix container dan row */
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+                max-width: 100%;
+            }
+            
+            .row {
+                margin-left: -10px;
+                margin-right: -10px;
+            }
+            
+            .row > * {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
             .hero {
                 min-height: 350px;
                 padding: 60px 0;
@@ -894,6 +941,8 @@
     @yield('styles')
 </head>
 <body>
+    <!-- Wrapper untuk mencegah horizontal scroll -->
+    <div class="page-wrapper" style="overflow-x: hidden; width: 100%; max-width: 100vw; position: relative;">
     <!-- Loading Screen -->
     <div id="loader">
         <div class="loader-content">
@@ -1099,13 +1148,23 @@
     </div>
 
     <script>
-        // Initialize AOS
+        // Initialize AOS dengan disable pada mobile untuk mencegah horizontal scroll
         AOS.init({
             duration: 800,
             easing: 'ease-in-out',
             once: true,
-            offset: 100
+            offset: 50,
+            disable: function() {
+                // Disable animasi fade-left dan fade-right pada layar kecil
+                return window.innerWidth < 768;
+            }
         });
+        
+        // Fallback: Jika AOS diaktifkan di mobile, batasi overflow
+        if (window.innerWidth < 768) {
+            document.documentElement.style.overflowX = 'hidden';
+            document.body.style.overflowX = 'hidden';
+        }
 
         // Loading Screen
         window.addEventListener('load', function() {
@@ -1430,5 +1489,6 @@
         });
     </script>
     @yield('scripts')
+    </div><!-- End page-wrapper -->
 </body>
 </html>
